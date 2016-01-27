@@ -4,4 +4,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="AVG_URL">
+        <item>https://api.bitcoinaverage.com/ticker/global/THB/</item>
+        <item>https://api.bitcoinaverage.com/ticker/global/USD/</item>
+    </string-array>
+
 </resources>

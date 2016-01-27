@@ -12,6 +12,11 @@ public class CommonUtil {
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     public static SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 
-    public static String DateTime_Now;
-    public static Integer mCount =0;
+    public static Integer mCount = 0;
+
+    public static Boolean DashBoard_Stage = false;
+
+    public static String mTHB = "";
+    public static String mUSD = "";
+
 }
