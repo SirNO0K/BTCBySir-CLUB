@@ -10,14 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
 import com.sirclub.btcbysir_club.AVERAGE.AverageAdapter;
+import com.sirclub.btcbysir_club.GSONObject.Average_GSON_Object;
 import com.sirclub.btcbysir_club.Utils.CommonUtil;
 import com.sirclub.btcbysir_club.Utils.FeedDataList;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 
 /**
@@ -61,25 +63,28 @@ public class DashBoardFragment extends Fragment {
 
     private class feedAVGData extends AsyncTask<String, Void, ArrayList<Object>> {
 
-        ArrayList<Object> returnResult = new ArrayList<>();
+
         final Calendar mTime = Calendar.getInstance();
 
         @Override
         protected ArrayList<Object> doInBackground(String... params) {
 
-            try {
-                returnResult.add(0,CommonUtil.dateFormat.format(mTime.getTime()) + " " + CommonUtil.timeFormat.format(mTime.getTime()));
-                for (int i = 0; i < params.length; i++) {
 
-                    Double result = new JSONObject(FeedDataList.FeedData(params[i], null, null)).getDouble("last");
-                    returnResult.add(i+1,result);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+            ArrayList<Object> returnResult = new ArrayList<>();
+            Gson gson = new Gson();
+
+            returnResult.add(0, CommonUtil.dateFormat.format(mTime.getTime()) + " " + CommonUtil.timeFormat.format(mTime.getTime()));
+
+            for (int i = 0; i < params.length; i++) {
+                String result = FeedDataList.feedGetData(params[i]);
+                List<Average_GSON_Object> enums = Arrays.asList(gson.fromJson(result,Average_GSON_Object.class));
+                returnResult.add(i+1,enums.get(0).getLast());
             }
+
 
             return returnResult;
         }
+
 
         @Override
         protected void onPostExecute(ArrayList<Object> jsonObject) {
@@ -110,7 +115,7 @@ public class DashBoardFragment extends Fragment {
 
         @Override
         public void onFinish() {
-            new feedAVGData().execute(mAvgUrl[0],mAvgUrl[1]);
+            new feedAVGData().execute(mAvgUrl[0], mAvgUrl[1]);
         }
     }
 
