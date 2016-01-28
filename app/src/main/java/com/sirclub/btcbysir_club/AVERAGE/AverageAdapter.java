@@ -91,18 +91,18 @@ public class AverageAdapter extends BaseAdapter {
         anim.setDuration(300);
 
         holder.AVG_DateTime.setText(Avg_Time);
-        if (!CommonUtil.mTHB.equals(Avg_THB)) {
+        if (!CommonUtil.mAVG_THB.equals(Avg_THB)) {
             holder.AVG_Rate_THB.startAnimation(anim);
             holder.AVG_Rate_THB.setText(Avg_THB);
-            CommonUtil.mTHB = Avg_THB;
+            CommonUtil.mAVG_THB = Avg_THB;
         } else {
             holder.AVG_Rate_THB.setText(Avg_THB);
         }
 
-        if (!CommonUtil.mUSD.equals(Avg_USD)) {
+        if (!CommonUtil.mAVG_USD.equals(Avg_USD)) {
             holder.AVG_Rate_USD.startAnimation(anim);
             holder.AVG_Rate_USD.setText(Avg_USD);
-            CommonUtil.mUSD = Avg_USD;
+            CommonUtil.mAVG_USD = Avg_USD;
         } else {
             holder.AVG_Rate_USD.setText(Avg_USD);
         }

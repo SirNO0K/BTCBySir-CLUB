@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 import com.sirclub.btcbysir_club.AVERAGE.AverageAdapter;
 import com.sirclub.btcbysir_club.GSONObject.Average_GSON_Object;
 import com.sirclub.btcbysir_club.Utils.CommonUtil;
-import com.sirclub.btcbysir_club.Utils.FeedDataList;
+import com.sirclub.btcbysir_club.Utils.ServerHandler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,7 +76,7 @@ public class DashBoardFragment extends Fragment {
             returnResult.add(0, CommonUtil.dateFormat.format(mTime.getTime()) + " " + CommonUtil.timeFormat.format(mTime.getTime()));
 
             for (int i = 0; i < params.length; i++) {
-                String result = FeedDataList.feedGetData(params[i]);
+                String result = ServerHandler.feedGetData(params[i]);
                 List<Average_GSON_Object> enums = Arrays.asList(gson.fromJson(result,Average_GSON_Object.class));
                 returnResult.add(i+1,enums.get(0).getLast());
             }

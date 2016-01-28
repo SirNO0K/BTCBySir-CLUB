@@ -7,7 +7,7 @@ import okhttp3.Response;
 /**
  * Created by arin on 1/22/16.
  */
-public class FeedDataList {
+public class ServerHandler {
 
     public static String feedGetData(String _url) {
         try {
